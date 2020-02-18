@@ -4,5 +4,5 @@
 # python3.7 ./src/border_analytics.py ./input/Border_Crossing_Entry_Data.csv ./output/report.csv
 
 cd src
-python3 ./Py-BCreport.py
+python3 ./Py-BCreport.py ./input/Border_Crossing_Entry_Data.csv ./output/Report.csv
 
