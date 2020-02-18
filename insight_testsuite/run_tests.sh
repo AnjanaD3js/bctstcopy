@@ -36,23 +36,23 @@ function check_project_struct {
 }
 
 # setup testing output folder
-#function setup_testing_input_output {
-#  TEST_OUTPUT_PATH=${GRADER_ROOT}/temp
-#  if [ -d ${TEST_OUTPUT_PATH} ]; then
-#    rm -rf ${TEST_OUTPUT_PATH}
-#  fi
-#
-#  mkdir -p ${TEST_OUTPUT_PATH}
-#
-#  cp -r ${PROJECT_PATH}/src ${TEST_OUTPUT_PATH}
-#  cp -r ${PROJECT_PATH}/run.sh ${TEST_OUTPUT_PATH}
-#  cp -r ${PROJECT_PATH}/input ${TEST_OUTPUT_PATH}
-#  cp -r ${PROJECT_PATH}/output ${TEST_OUTPUT_PATH}
-#
-#  rm -r ${TEST_OUTPUT_PATH}/input/*
-#  rm -r ${TEST_OUTPUT_PATH}/output/*
-#  cp -r ${GRADER_ROOT}/tests/${test_folder}/input/Border_Crossing_Entry_Data.csv ${TEST_OUTPUT_PATH}/input/Border_Crossing_Entry_Data.csv
-#}
+function setup_testing_input_output {
+  TEST_OUTPUT_PATH=${GRADER_ROOT}/temp
+  if [ -d ${TEST_OUTPUT_PATH} ]; then
+    rm -rf ${TEST_OUTPUT_PATH}
+  fi
+
+  mkdir -p ${TEST_OUTPUT_PATH}
+
+  cp -r ${PROJECT_PATH}/src ${TEST_OUTPUT_PATH}
+  cp -r ${PROJECT_PATH}/run.sh ${TEST_OUTPUT_PATH}
+  cp -r ${PROJECT_PATH}/input ${TEST_OUTPUT_PATH}
+  cp -r ${PROJECT_PATH}/output ${TEST_OUTPUT_PATH}
+
+  rm -r ${TEST_OUTPUT_PATH}/input/*
+  rm -r ${TEST_OUTPUT_PATH}/output/*
+  cp -r ${GRADER_ROOT}/tests/${test_folder}/input/Border_Crossing_Entry_Data.csv ${TEST_OUTPUT_PATH}/input/Border_Crossing_Entry_Data.csv
+}
 
 function compare_outputs {
   NUM_OUTPUT_FILES_PASSED=0
@@ -81,17 +81,17 @@ function run_all_tests {
   PASS_CNT=0
 
   # Loop through all tests
-#  for test_folder in ${TEST_FOLDERS}; do
-#
-#    setup_testing_input_output
-#
-#    cd ${GRADER_ROOT}/temp
-#    bash run.sh 2>&1
-#    cd ../
-#
-#    compare_outputs
-#  done
-#
+  for test_folder in ${TEST_FOLDERS}; do
+
+    setup_testing_input_output
+
+    cd ${GRADER_ROOT}/temp
+    bash run.sh 2>&1
+    cd ../
+
+    compare_outputs
+  done
+
   echo "[$(date)] ${PASS_CNT} of ${NUM_TESTS} tests passed"
   echo "[$(date)] ${PASS_CNT} of ${NUM_TESTS} tests passed" >> ${GRADER_ROOT}/results.txt
 }
